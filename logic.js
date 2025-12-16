@@ -12,26 +12,29 @@ this.page=page;
 this.read=read;
 this.uuid=crypto.randomUUID();
 }
-function form(){
-display.replaceChildren();
-btn.style["display"]="none";
-show.style["display"]="none";
-let bname=book("Book Name*: ","text");
-let aname=book("Author Name*: ","text");
-let btitle=book("Book Page*: ","number");
-let rread=radio("Read");
-let runread=radio("Unread");
-let sbutton=document.createElement("button");
+
+let bname,aname,btitle,rread,runread,sbutton;
+sbutton=document.createElement("button");
 sbutton.type="submit";
 sbutton.textContent="Submit";
-//document.querySelector("#total")
-sbutton.addEventListener("click",(e)=>{
+
+document.querySelector("form").addEventListener("submit",(e)=>{
     e.preventDefault();
-    let curr=new creator(bname.value,aname.value,btitle.value,rread.value);
+    let curr=new creator(bname.value,aname.value,btitle.value,rread.checked);
     record.push(curr);
     refresh();
     console.log(record);
 });
+
+function form(){
+display.replaceChildren();
+btn.style["display"]="none";
+show.style["display"]="none";
+bname=book("Book Name*: ","text");
+aname=book("Author Name*: ","text");
+btitle=book("Book Page*: ","number");
+rread=radio("Read");
+runread=radio("Unread");
 submit.appendChild(sbutton);
 }
 function refresh(){
@@ -85,7 +88,8 @@ function showbook(){
         tbutton.textContent="Toggle";
         del_ele.textContent="Remove";
         tbutton.addEventListener("click",()=>{
-            status.textContent=!i.read?"Book is read":"Book is unread"
+            status.textContent=!i.read?"Book is read":"Book is unread";
+            i.read=!i.read;
         });
         del_ele.addEventListener("click",()=>{
             record.splice(record.indexOf(i),1);
@@ -99,7 +103,7 @@ function showbook(){
         box.appendChild(status);
         box.appendChild(tbutton);
         box.appendChild(del_ele);
-        box.style.padding="20px";
+        box.style.padding="40px";
         box.style["line-height"]="5vh";
         display.appendChild(box);
         

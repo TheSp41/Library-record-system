@@ -2,6 +2,11 @@
     background-color:#0f172a;
     color:#e5e7eb;
 }
+#container{
+    display: flex;
+    flex-direction: column;
+    min-height:100vh;
+}
 #btn,#disp{
     background-color: #000000;
     color:#ffffff;
@@ -14,13 +19,13 @@
 }
 #main{
 font-size: medium;
-height:80vh;
+flex: 1;
 }
 #tail{
     font-weight:bold;
     font-size: 30px;
-    height:10vh;
     text-align: center;
+    
 }
 #operations{
     text-align:center;
@@ -47,6 +52,7 @@ height:80vh;
     display:flex;
     gap:3vw;
     flex-wrap: wrap;
+    padding:5vw;
 }
 #disp{
     display:none;
